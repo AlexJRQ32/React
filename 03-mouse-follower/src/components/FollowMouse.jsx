@@ -5,6 +5,14 @@ function FollowMouse() {
     const [enabled, setEnabled] = useState(false);
 
     useEffect(() => {
+        document.body.classList.toggle('no-cursor', enabled)
+
+        return () => {
+            document.body.classList.remove('no-cursor')
+        }
+    },[enabled])
+
+    useEffect(() => {
         console.log('effect', {enabled})
 
         const handleMove = (event) => {
@@ -24,22 +32,22 @@ function FollowMouse() {
 
     return(
         <>
-            <div style={{
+            <div className={enabled ? 'cursor' : 'no-follow-mouse'} style={{
                 position: 'absolute',
-                background: '#09f',
-                filter: 'blur(10px)',
+                background: '#333',
+                border: '1px solid #fff',
                 borderRadius: '50%',
-                opacity: 0.4,
+                opacity: 0.8,
                 pointerEvents: 'none',
                 left: -25,
                 top: -25,
-                width: 60,
-                height: 60,
+                width: 40,
+                height: 40,
                 transform: `translate(${position.x}px, ${position.y}px)`
             }}
             />
             <button onClick={() => setEnabled(!enabled)}>
-                {enabled ? 'Disactive' : 'Active'} FollowMouse
+                {enabled ? 'Disable' : 'Enable'} FollowMouse
             </button>
         </>
     )

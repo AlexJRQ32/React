@@ -70,6 +70,14 @@ button:focus-visible {
   }
 }
 
-body.no-cursor {
+body.no-cursor,
+body.no-cursor button:hover,
+body.no-cursor button:focus,
+body.no-cursor button:focus-visible{
   cursor: none;
 }
+
+.no-follow-mouse{
+  display: none;
+}
+
