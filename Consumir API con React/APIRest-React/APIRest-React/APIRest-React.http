@@ -1,0 +1,6 @@
+@APIRest_React_HostAddress = http://localhost:5029
+
+GET {{APIRest_React_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
