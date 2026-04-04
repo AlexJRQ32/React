@@ -18,6 +18,6 @@ namespace APIRest_React.Models
         [Required]
         public int Stock { get; set; }
 
-        public bool Activo { get; set; } = true;
+        public bool? Activo { get; set; } = true;
     }
 }

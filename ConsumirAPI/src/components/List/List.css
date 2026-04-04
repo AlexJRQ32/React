@@ -1,0 +1,30 @@
+table{
+    border: 1px solid var(--accent-border);
+    width: 80%;
+    align-items: center;
+    margin: 0 20px;
+}
+
+
+
+td, th{
+    border: 1px solid var(--accent-border);
+    text-align: center;
+    justify-content: space-around;
+}
+
+.title{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    border-bottom: 1px solid #888;
+    margin: 0 20px 20px 20px;
+}
+
+.actions{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    gap: 20px;
+}
+

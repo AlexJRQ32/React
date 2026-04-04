@@ -1,0 +1,52 @@
+.btn-changes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--accent);
+    font-size: 20px;
+    border-radius: 50%;
+    box-shadow: 5px 2px 7px rgba(8, 8, 8, .26);
+}
+
+.btn-changes i{
+    display: flex;
+    transition: transform 0.4s;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.btn-changes:hover{
+    transform: translateY(-5px);
+    transition: 0.2s;
+}
+
+.btn-add{
+    margin: 20px 0 0 0;
+}
+
+.btn-add:hover{
+    background: #2cb67d;
+    transform: rotate(90deg);
+    font-size: 26px;
+    transition: 0.3s;
+}
+
+.btn-delete:hover{
+    background: #e5383b;
+    transform: translateY(-5px);
+    transition: 0.3s;
+    font-size: 26px;
+}
+
+.btn-edit:hover{
+    background: #fca311;
+    transform: translateY(-5px);
+    transition: 0.3s;
+    font-size: 26px;
+}

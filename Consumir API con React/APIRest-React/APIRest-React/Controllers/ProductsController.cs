@@ -25,6 +25,7 @@ namespace APIRest_React.Controllers{
         {
             try
             {
+                product.Activo = true;
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
                 return Ok(product);
@@ -50,6 +51,7 @@ namespace APIRest_React.Controllers{
                 prod.Nombre = product.Nombre;
                 prod.Precio = product.Precio;
                 prod.Stock = product.Stock;
+                prod.Activo = product.Activo ?? prod.Activo;
 
                 await _context.SaveChangesAsync();
                 return Ok("Producto actualizado correctamente");
