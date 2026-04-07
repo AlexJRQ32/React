@@ -21,10 +21,59 @@ td, th{
     margin: 0 20px 20px 20px;
 }
 
+.search{
+    display: flex;
+    width: 80%;
+    margin: 20px 0;
+    border-bottom: 1px solid #888;
+    justify-content: center;
+}
+
+.search input{
+    width: 100%;
+    border-radius: 10px;
+    background: var(--accent-bg);
+    border: none;
+    box-shadow: var(--shadow);
+    padding: 10px 0 10px 10px;
+    margin-bottom: 40px;
+}
+
 .actions{
     display: flex;
     justify-content: center;
     padding: 10px 0;
     gap: 20px;
+}
+
+@media (max-width: 768px) {
+    table{
+        font-size: small;
+    }
+
+    .actions{
+        display: flex;
+        gap: 10px;
+    }
+
+
+
+    .actions button:first-child{
+        margin-left: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: small;
+    }
+
+    .actions button:last-child{
+        margin-right: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: small;
+    }
+
+    td, th{
+        padding: 0 10px;
+    }
 }
 

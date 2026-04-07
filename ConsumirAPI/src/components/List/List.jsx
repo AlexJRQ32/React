@@ -1,12 +1,20 @@
 import Buttons from '../Buttons/Buttons'
 import './List.css'
 
-function List({ object, title, cols, onAdd, onEdit, onDelete }) {
+function List({ filtered, title, cols, query, setQuery, onAdd, onEdit, onDelete }) {
   return (
     <>
       <div className="title">
         <h1>List of {title}</h1>
         <Buttons icon="plus" type="btn-add" onClick={onAdd} />
+      </div>
+      <div className='search'>
+        <input
+          type="text"
+          placeholder='Search product'
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
       </div>
       <table>
         <thead>
@@ -17,7 +25,7 @@ function List({ object, title, cols, onAdd, onEdit, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {object.map((p) => (
+          {filtered.map((p) => (
             <tr key={p.id}>
               <td>{p.id}</td>
               <td>{p.nombre}</td>

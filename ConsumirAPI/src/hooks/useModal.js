@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CreateProducts, UpdateProducts } from '../services/APIProducts'
+import { CreateProducts, UpdateProducts } from '../services/apiProducts'
 
 export function useModal(refetchProducts, setFormData) {
   const [isModalOpen, setIsModalOpen] = useState(false)
