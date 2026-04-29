@@ -1,0 +1,19 @@
+.filters{
+  display: flex;
+  gap: 1rem;
+  justify-content:space-between;
+}
+
+.filter {
+  display: flex;
+  gap: 1rem;
+  font-weight: 700;
+}
+
+#category {
+  padding: .5rem;
+  border-radius: 4px;
+  border: none;
+  background: #1e1e1e;
+  color: #fff;
+}
