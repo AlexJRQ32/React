@@ -1,0 +1,38 @@
+[
+    {
+      "id": 101,
+      "title": "Hamburguesa Trufada",
+      "value": "Truffle Burger",
+      "category": "Main Course",
+      "price": "$15.99",
+      "img": "https://media.scoolinary.app/blog/images/2023/05/hamburguesa-la-trufada-1.jpg",
+      "available": true
+    },
+    {
+      "id": 102,
+      "title": "Papas Rústicas",
+      "value": "Rustic Fries",
+      "category": "Sides",
+      "price": "$6.50",
+      "img": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=500&auto=format&fit=crop",
+      "available": true
+    },
+    {
+      "id": 103,
+      "title": "Malteada de Avellana",
+      "value": "Hazelnut Milkshake",
+      "category": "Drinks",
+      "price": "$7.25",
+      "img": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=500&auto=format&fit=crop",
+      "available": false
+    },
+    {
+      "id": 104,
+      "title": "Alitas BBQ",
+      "value": "BBQ Wings",
+      "category": "Appetizers",
+      "price": "$12.00",
+      "img": "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?q=80&w=500&auto=format&fit=crop",
+      "available": true
+    }
+  ]

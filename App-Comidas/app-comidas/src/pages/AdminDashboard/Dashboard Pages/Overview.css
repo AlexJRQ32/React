@@ -1,0 +1,30 @@
+.stat-cards{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+  justify-self: center;
+}
+
+.quick-access{
+  border: 1px solid var(--border-color);
+  margin: 40px 0 0 0;
+  border-radius: var(--radius-20);
+  display: flex;
+  padding: 48px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  background-color: var(--bg-surface-elevated);
+  box-shadow: var(--shadow-main);
+}
+
+.quick-access h2{
+  font-weight: bolder;
+  font-size: 28px;
+}
+
+.buttons{
+  display: flex;
+  gap: 10px;
+}

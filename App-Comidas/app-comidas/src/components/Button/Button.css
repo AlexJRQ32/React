@@ -1,0 +1,91 @@
+.btn-redirect{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--text-on-accent);
+  background-color: var(--brand-primary);
+  width: max-content;
+  padding: 8px 12px;
+  border-radius: var(--radius-main);
+  border: 2px solid var(--border-color);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.btn-redirect i{
+  font-size: 14px;
+}
+
+.btn-redirect:hover{
+  background-color: var(--brand-soft);
+  color: var(--brand-primary);
+  transform: translateY(var(--transform-standard));
+  transition: var(--transition-standard);
+}
+
+.btn-action{
+  color: var(--text-on-accent);
+  background-color: var(--brand-primary);
+  width: 35px;
+  height: 35px;
+  border-radius: 7px;
+  border: none;
+}
+
+.btn-action:hover{
+  transform: translateY(var(--transform-standard));
+  transition: var(--transition-standard);
+}
+
+.btn-delete{
+  color: var(--status-error);
+  background-color: var(--status-error-bg);
+}
+
+.btn-delete:hover{
+  border:2px solid var(--status-error);
+  background-color: var(--status-error-bg);
+  color: var(--status-error);
+}
+
+.btn-edit{
+  color: var(--status-warning);
+  background-color: var(--status-warning-bg);
+}
+
+.btn-edit:hover{
+  border:2px solid var(--status-warning);
+  background-color: var(--status-warning-bg);
+  color: var(--status-warning);
+}
+
+.btn-add{
+  color: var(--status-success);
+  background-color: var(--status-success-bg);
+  border-radius: 50%;
+}
+
+.btn-add:hover{
+  border:2px solid var(--status-success);
+  background-color: var(--status-success-bg);
+  color: var(--status-success);
+}
+
+.btn-black{
+  padding: 16px 24px;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 16px;
+  border: none;
+  box-shadow: var(--shadow-main);
+}
+
+.btn-clear{
+  padding: 16px 24px;
+  background-color: transparent;
+  color: var(--text-primary);
+  font-size: 16px;
+  border: none;
+  box-shadow: var(--shadow-main);
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "McDonald's",
+    "img": "https://pngimg.com/uploads/mcdonalds/mcdonalds_PNG17.png",
+    "schedule": "06:00 - 00:00",
+    "rating": "4.5",
+    "location": "Tibás centro",
+    "isOpen": true,
+    "deliveryFee": "₡1,000",
+    "deliveryTime": "30 min"
+  },
+  {
+    "name": "Pizza Hut",
+    "img": "https://logos-marcas.com/wp-content/uploads/2021/10/Pizza-Hut-Emblema.png",
+    "schedule": "11:00 - 23:00",
+    "rating": "4.3",
+    "location": "San José centro",
+    "isOpen": true,
+    "deliveryFee": "₡1,200",
+    "deliveryTime": "35 min"
+  },
+  {
+    "name": "Taco Bell",
+    "img": "https://logos-world.net/wp-content/uploads/2021/10/Taco-Bell-Emblem.png",
+    "schedule": "10:00 - 22:00",
+    "rating": "4.4",
+    "location": "San Pedro",
+    "isOpen": true,
+    "deliveryFee": "₡1,100",
+    "deliveryTime": "25 min"
+  },
+  {
+    "name": "KFC",
+    "img": "https://static.vecteezy.com/system/resources/previews/024/693/620/original/kfc-logo-transparent-free-png.png",
+    "schedule": "11:00 - 22:00",
+    "rating": "4.2",
+    "location": "Tibás centro",
+    "isOpen": true,
+    "deliveryFee": "₡1,000",
+    "deliveryTime": "30 min"
+  },
+  {
+    "name": "Burger King",
+    "img": "https://logos-world.net/wp-content/uploads/2020/04/Burger-King-Logo-1994-1999.png",
+    "schedule": "07:00 - 23:00",
+    "rating": "4.1",
+    "location": "Tibás centro",
+    "isOpen": true,
+    "deliveryFee": "₡1,000",
+    "deliveryTime": "30 min"
+  },
+  {
+    "name": "Ready Pizza",
+    "img": "https://readypizzapa.com/og.jpg",
+    "schedule": "11:00 - 22:00",
+    "rating": "4.6",
+    "location": "Guadalupe",
+    "isOpen": true,
+    "deliveryFee": "₡900",
+    "deliveryTime": "20 min"
+  }
+]

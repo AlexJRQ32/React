@@ -1,0 +1,35 @@
+import OrdersData from '../../mocks/orders.json'
+import { OrderSimpleCard } from '../../components/Cards/Cards'
+import { ButtonRedirect } from "../../components/Button/Button"
+
+export function OrderHistory() {
+  const orders = OrdersData
+  const haveOrders = false
+
+  return(
+    <div className="page">
+      <div className="order-section">
+        <div className="order-header">
+          <span>
+            <i className="fa-solid fa-receipt"></i>
+            <h1>My Vouchers</h1>
+          </span>
+        </div>
+        {
+          haveOrders ?
+          <div className="order-body">
+            {orders.map(order => (
+              <OrderSimpleCard id={order.id} date={order.date} time={order.time} status={order.status} total={order.total} />
+            ))}
+          </div>
+          :
+          <div className="order-body">
+            <i className="fa-solid fa-box-open"></i>
+            <strong>You don't have any registered orders yet</strong>
+            <ButtonRedirect title={'Explore restaurants'} site={'/search'}/>
+          </div>
+        }
+      </div>
+    </div>
+  )
+}
