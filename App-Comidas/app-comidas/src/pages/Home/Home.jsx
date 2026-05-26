@@ -1,13 +1,11 @@
 import { SearchBar } from '../../components/SearchBar/SearchBar'
-import { SimpleCard } from '../../components/Cards/Cards'
-import { ElaborateCard } from '../../components/Cards/Cards'
-import Categories from '../../mocks/categories.json'
-import Restaurants from '../../mocks/restaurants.json'
+import { CategoryCard } from '../../components/Cards/Cards'
+import { RestaurantCard } from '../../components/Cards/Cards'
+import { useMappedObjects } from '../../hooks/useMappedObjects'
 import './Home.css'
 
 export function Home() {
-  const restaurants = Restaurants
-  const categories = Categories
+  const { restaurants, categories } = useMappedObjects()
 
   return (
     <>
@@ -20,15 +18,7 @@ export function Home() {
       <section className="section">
         <div className="body">
           <h2>Browse by category</h2>
-          <div className="categories">
-            {categories.map((category) => (
-              <SimpleCard
-                key={category.id}
-                name={category.name}
-                icon={category.icon}
-              />
-            ))}
-          </div>
+          <CategoryCard categories={categories} />
         </div>
       </section>
       <section className="section">
@@ -37,16 +27,7 @@ export function Home() {
             <h2>Populars restaurants</h2>
             <a href="/search">View all</a>
           </div>
-          <div className="restaurants">
-            {restaurants.map((restaurant) => (
-              <ElaborateCard
-                name={restaurant.name}
-                img={restaurant.img}
-                rating={restaurant.rating}
-                schedule={restaurant.schedule}
-              />
-            ))}
-          </div>
+          <RestaurantCard restaurants={restaurants} />
         </div>
       </section>
       <section className='section'>

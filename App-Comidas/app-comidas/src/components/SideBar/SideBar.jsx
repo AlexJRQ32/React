@@ -54,8 +54,7 @@ export function SideBar() {
             icon={'power-off'}
             title={'Exit'}
             site={'home'}
-            classN={'delete'}
-            style={{ width: '100%' }}
+            className={'exit'}
           />
         </div>
       </nav>

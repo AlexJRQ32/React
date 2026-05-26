@@ -1,13 +1,18 @@
 .search-bar{
   display: flex;
   width: 600px;
-  height: 50px;
+  height: 55px;
   align-items: center;
   background-color: var(--bg-main);
   justify-content: space-between;
-  padding: 2px 8px;
-  border-radius: 30px;
-  box-shadow: var(--shadow-main);
+  padding: 4px 8px;
+  border-radius: var(--radius-20);
+  box-sizing: border-box;
+  box-shadow: var(--shadow-main); 
+}
+
+.search-bar-in-search{
+  border: 2px solid var(--brand-primary);
 }
 
 .search-bar span{

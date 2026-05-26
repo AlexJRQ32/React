@@ -1,3 +1,11 @@
+.coupons{
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  gap: 10px;
+}
+
 .coupon-card {
   display: flex;
   flex-direction: row;
@@ -20,6 +28,18 @@
 .coupon-card:hover {
   transform: translateY(-5px);
   transition: var(--transition-standard);
+}
+
+.grid-body{
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  place-items: center;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+  justify-self: center;
 }
 
 .coupon-ticket {

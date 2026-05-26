@@ -1,6 +1,6 @@
 import './IncomingOrders.css'
 import Restaurants from '../../mocks/restaurants.json'
-import OrdersData from '../../mocks/orders.json'
+import { useMappedObjects } from '../../hooks/useMappedObjects'
 import { OrderCard } from '../../components/Cards/Cards'
 
 export function IncomingOrders() {
@@ -8,8 +8,7 @@ export function IncomingOrders() {
   const selectedRestaurant = restaurantNames.find(
     (name) => name === 'Taco Bell'
   )
-  const orders = OrdersData
-  const haveOrders = true
+  const { orders } = useMappedObjects()
 
   return (
     <div className="page">
@@ -21,25 +20,13 @@ export function IncomingOrders() {
           </span>
           <p>{selectedRestaurant || 'Restaurant not found'}</p>
         </div>
-        {
-          haveOrders ?
+        {orders ? (
           <div className="order-body">
-            {orders.map((order) => (
-              <OrderCard
-                key={order.id}
-                id={order.id}
-                date={order.date}
-                customer={order.customer}
-                paymentMethod={order.paymentMethod}
-                status={order.status}
-                total={order.total}
-                items={order.items}
-                time={order.time}
-              />
-            ))}
+            <OrderCard orders={orders} />
           </div>
-        : <p className='empty'>Your quaue is empty</p>
-        }
+        ) : (
+          <p className="empty">Your quaue is empty</p>
+        )}
       </div>
     </div>
   )

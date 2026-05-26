@@ -2,88 +2,109 @@ import './Cards.css'
 import { ButtonAction, ButtonRedirect } from '../Button/Button'
 import { NavLink } from 'react-router-dom'
 
-export function SimpleCard({ icon, name }) {
+export function CategoryCard({ categories }) {
   return (
-    <NavLink to="/search" className="simple-card">
-      <i className={`fa-solid fa-${icon}`}></i>
-      <h3>{name}</h3>
-    </NavLink>
+    <ul className="categories">
+      {categories.map(categorie => (
+        <li key={categorie.id}>
+          <NavLink to="/search" className="categorie-card">
+            <i className={`fa-solid fa-${categorie.icon}`}></i>
+            <h3>{categorie.name}</h3>
+            {categorie.subtitle ?? <p>{categorie.subtitle}</p>}
+          </NavLink>
+        </li>
+    ))}
+    </ul>
   )
 }
 
-export function ElaborateCard({ schedule, name, img, rating }) {
+export function RoleCard({ roles }) {
   return (
-    <NavLink to="/search" className="elaborate-card">
-      <img src={img} alt={name} />
-      <h3>{name}</h3>
-      <div className="other-info">
-        <span>
-          <i className="fa-solid fa-clock" />
-          {schedule}
-        </span>
-        <span>
-          <i className="fa-solid fa-star" />
-          {rating}
-        </span>
-      </div>
-    </NavLink>
+    <ul className="roles">
+      {roles.map(role => (
+        <li key={role.id}>
+          <NavLink to={role.site} className="role-card">
+            <i className={`fa-solid fa-${role.icon} fa-3x`}></i>
+            <div className="role-titles">
+              <h2>{role.name}</h2>
+              <p>{role.subtitle}</p>
+            </div>
+          </NavLink>
+        </li>
+    ))}
+    </ul>
   )
 }
 
-export function LargeCard({
-  name,
-  img,
-  schedule,
-  location,
-  isOpen,
-  deliveryFee,
-  deliveryTime,
-}) {
+export function RestaurantCard({ restaurants }) {
   return (
-    <div className="large-card">
-      <img src={img} alt={name} />
-      <div className="card-info">
-        <div className="content">
-          <div id="top">
-            <h3>{name}</h3>
-            <span>
-              <i className="fa-solid fa-location-dot" />
-              {location}
-            </span>
+    <ul className="restaurants">
+      {restaurants.map(restaurant => (
+        <li key={restaurant.id}>
+          <NavLink to="/search" className="restaurant-card">
+            <img src={restaurant.img} alt={restaurant.name} />
+            <h3>{restaurant.name}</h3>
+            <div className="other-info">
+              <span>
+                <i className="fa-solid fa-clock" />
+                {restaurant.schedule}
+              </span>
+              <span>
+                <i className="fa-solid fa-star" />
+                {restaurant.rating}
+              </span>
+            </div>
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+export function RestaurantLargeCard({ restaurants }) {
+  return (
+    <ul className='show-restaurants'>
+      {restaurants.map(restaurant => (
+        <li key={restaurant.id}>
+          <div className="large-card">
+            <img src={restaurant.img} alt={restaurant.name} />
+            <div className="card-info">
+              <div className="content">
+                <div id="top">
+                  <h3>{restaurant.name}</h3>
+                  <span>
+                    <i className="fa-solid fa-location-dot" />
+                    {restaurant.location}
+                  </span>
+                </div>
+                {restaurant.isOpen ? (
+                  <span className="status is-open">OPEN</span>
+                ) : (
+                  <span className="status is-closed">CLOSED</span>
+                )}
+              </div>
+              <div className="content">
+                <div id="bot">
+                  <span>
+                    <i className="fa-regular fa-clock"></i>
+                    {restaurant.schedule}
+                  </span>
+                  <p>
+                    {restaurant.deliveryFee} delivery • {restaurant.deliveryTime}
+                  </p>
+                </div>
+                <ButtonRedirect title={'View menu'} />
+              </div>
+            </div>
           </div>
-          {isOpen ? (
-            <span className="status is-open">OPEN</span>
-          ) : (
-            <span className="status is-closed">CLOSED</span>
-          )}
-        </div>
-        <div className="content">
-          <div id="bot">
-            <span>
-              <i className="fa-regular fa-clock"></i>
-              {schedule}
-            </span>
-            <p>
-              {deliveryFee} delivery • {deliveryTime}
-            </p>
-          </div>
-          <ButtonRedirect title={'View menu'} />
-        </div>
-      </div>
-    </div>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-export function OrderCard({
-  id,
-  date,
-  customer,
-  paymentMethod,
-  status,
-  total,
-  items,
-  time,
-}) {
+export function OrderCard({ orders }) {
+  
   const statusClass = ({ status }) => {
     if (status === 'DELIVERED') {
       return 'completed'
@@ -95,45 +116,51 @@ export function OrderCard({
   }
 
   return (
-    <div className="order-card">
-      <div className="card-header">
-        <div className="left-side">
-          <h2>Order #{id}</h2>
-          <p>
-            <i className="fa-solid fa-calendar-days"></i>
-            {date}
-            <span>
-              <i className="fa-regular fa-clock"></i>
-              {time}
-            </span>
-          </p>
-          <p>
-            <i className="fa-solid fa-user"></i>
-            {customer}
-          </p>
-          <p>
-            <i className="fa-solid fa-credit-card"></i>
-            {paymentMethod}
-          </p>
-        </div>
-        <div className="right-side">
-          <span className={statusClass({ status })}>{status}</span>
-          <h3>${total}</h3>
-        </div>
-      </div>
-      <div className="card-items">
-        <i className="fa-solid fa-circle-dot"></i>
-        {items.map((item) => (
-          <span className="order-item">
-            {item.quantity}x {item.name} (${item.price})
-          </span>
-        ))}
-      </div>
-    </div>
+    <ul className='orders'>
+      {orders.map(order => (
+        <li key={order.id}>
+          <div className="order-card">
+            <div className="card-header">
+              <div className="left-side">
+                <h2>Order #{order.id}</h2>
+                <p>
+                  <i className="fa-solid fa-calendar-days"></i>
+                  {order.date}
+                  <span>
+                    <i className="fa-regular fa-clock"></i>
+                    {order.time}
+                  </span>
+                </p>
+                <p>
+                  <i className="fa-solid fa-user"></i>
+                  {order.customer}
+                </p>
+                <p>
+                  <i className="fa-solid fa-credit-card"></i>
+                  {order.paymentMethod}
+                </p>
+              </div>
+              <div className="right-side">
+                <span className={statusClass({ status: order.status})}>{order.status}</span>
+                <h3>${order.total}</h3>
+              </div>
+            </div>
+            <div className="card-items">
+              <i className="fa-solid fa-circle-dot"></i>
+              {order.items.map((item) => (
+                <span className="order-item" key={item.name}>
+                  {item.quantity}x {item.name} (${item.price})
+                </span>
+              ))}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-export function OrderSimpleCard({ id, date, time, status, total }) {
+export function OrderSimpleCard({ orders }) {
   const statusClass = ({ status }) => {
     if (status === 'DELIVERED') {
       return 'completed'
@@ -145,54 +172,64 @@ export function OrderSimpleCard({ id, date, time, status, total }) {
   }
 
   return (
-    <div className="order-card">
-      <div className="card-header">
-        <div className="left-side">
-          <h2>Order #{id}</h2>
-          <p>
-            <i className="fa-solid fa-calendar-days"></i> {date}
-            <i className="fa-regular fa-clock"></i> {time}
-          </p>
-        </div>
-        <div className="right-side">
-          <span className={statusClass({ status })}>{status}</span>
-          <h3>${total}</h3>
-          <ButtonRedirect
-            icon={'star'}
-            style={{ borderRadius: '12px' }}
-            title={'Rate'}
-          />
-        </div>
-      </div>
-    </div>
+    <ul className='orders'>
+      {orders.map(order => (
+        <li key={order.id}>
+          <div className="order-card" >
+            <div className="card-header">
+              <div className="left-side">
+                <h2>Order #{order.id}</h2>
+                <p>
+                  <i className="fa-solid fa-calendar-days"></i> {order.date}
+                  <i className="fa-regular fa-clock"></i> {order.time}
+                </p>
+              </div>
+              <div className="right-side">
+                <span className={statusClass({ status: order.status })}>{order.status}</span>
+                <h3>${order.total}</h3>
+                <ButtonRedirect
+                  icon={'star'}
+                  title={'Rate'}
+                />
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-export function StatCard({ icon, title, value, site }) {
+export function StatCard({ statcards }) {
   return(
-    <NavLink to={site} className={"stat-card"}>
-      <div>
-        <span>
-          <i className={`fa-solid fa-${icon}`}></i>
-        </span>
-        <p>{title} {value}</p>
-      </div>
-    </NavLink>
-    
+    <ul className="stats-cards">
+      {statcards.map(statcard => (
+        <li key={statcard.id}>
+          <NavLink to={statcard.site} className={"stat-card"}>
+            <div>
+              <span>
+                <i className={`fa-solid fa-${statcard.icon}`}></i>
+              </span>
+              <p>{statcard.title} {statcard.value}</p>
+            </div>
+          </NavLink>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-export function CrudCard({ img, name, attribute, classN, icon }) {
+export function CrudCard({ img, name, attribute, className, icon, onclick}) {
   return(
-    <div className={`crud-card ${classN}`}>
+    <div className={`crud-card ${className}`}>
       <img src={img} alt={name} />
       <span>
         <p>{name}</p>
         <strong><i className={`fa-solid fa-${icon}`}></i> {attribute}</strong>
       </span>
       <div>
-        <ButtonAction icon={'pencil'} classN={'edit'} />
-        <ButtonAction icon={'trash'} classN={'delete'}/>
+        <ButtonAction icon={'pencil'} className={'edit'} onclick={onclick} />
+        <ButtonAction icon={'trash'} className={'delete'}/>
       </div>
     </div>
   )

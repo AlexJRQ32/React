@@ -1,4 +1,4 @@
-.btn-redirect{
+.btn-redirect {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,69 +10,71 @@
   border-radius: var(--radius-main);
   border: 2px solid var(--border-color);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 900;
 }
 
-.btn-redirect i{
+.btn-redirect i {
   font-size: 14px;
 }
 
-.btn-redirect:hover{
+.btn-redirect:hover {
   background-color: var(--brand-soft);
   color: var(--brand-primary);
   transform: translateY(var(--transform-standard));
   transition: var(--transition-standard);
 }
 
-.btn-action{
+.btn-action-large {
   color: var(--text-on-accent);
   background-color: var(--brand-primary);
-  width: 35px;
-  height: 35px;
-  border-radius: 7px;
+  width: 100%;
+  padding: 12px 8px;
+  border-radius: var(--radius-20);
   border: none;
+  font-size: 16px;
+  font-weight: 900;
 }
 
-.btn-action:hover{
+.btn-action-large:hover {
+  background-color: var(--brand-soft);
+  color: var(--brand-primary);
   transform: translateY(var(--transform-standard));
   transition: var(--transition-standard);
 }
 
-.btn-delete{
-  color: var(--status-error);
-  background-color: var(--status-error-bg);
+.btn-confirm{
+  width: 100%;
 }
 
-.btn-delete:hover{
-  border:2px solid var(--status-error);
-  background-color: var(--status-error-bg);
-  color: var(--status-error);
+.btn-action {
+  color: var(--text-on-accent);
+  background-color: var(--brand-primary);
+  width: 48px;
+  height: 48px;
+  border-radius: 7px;
+  border: none;
 }
 
-.btn-edit{
-  color: var(--status-warning);
-  background-color: var(--status-warning-bg);
+.btn-action:hover {
+  background-color: var(--brand-soft);
+  color: var(--brand-primary);
+  transform: translateY(var(--transform-standard));
+  transition: var(--transition-standard);
 }
 
-.btn-edit:hover{
-  border:2px solid var(--status-warning);
-  background-color: var(--status-warning-bg);
-  color: var(--status-warning);
-}
-
-.btn-add{
-  color: var(--status-success);
-  background-color: var(--status-success-bg);
+.btn-delete {
   border-radius: 50%;
 }
 
-.btn-add:hover{
-  border:2px solid var(--status-success);
-  background-color: var(--status-success-bg);
-  color: var(--status-success);
+.btn-edit {
+  border-radius: 50%;
 }
 
-.btn-black{
+.btn-add {
+  border-radius: 50%;
+}
+
+.btn-black {
   padding: 16px 24px;
   background-color: var(--bg-main);
   color: var(--text-primary);
@@ -81,11 +83,48 @@
   box-shadow: var(--shadow-main);
 }
 
-.btn-clear{
+.btn-black:hover {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--text-primary);
+}
+
+.btn-clear {
   padding: 16px 24px;
   background-color: transparent;
   color: var(--text-primary);
   font-size: 16px;
   border: none;
   box-shadow: var(--shadow-main);
+}
+
+.btn-clear:hover {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  border: 2px solid var(--text-primary);
+}
+
+.btn-exit {
+  width: 100%;
+  color: var(--status-error);
+  background-color: var(--status-error-bg);
+}
+
+.btn-exit:hover {
+  color: var(--status-error);
+  background-color: var(--status-error-bg);
+  border: 2px solid var(--status-error);
+}
+
+.btn-close {
+  color: var(--text-primary);
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+}
+
+.btn-close:hover {
+  color: var(--text-primary);
+  background-color: transparent;
+  border: 2px solid var(--text-primary);
 }

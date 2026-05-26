@@ -6,6 +6,15 @@
   --bg-surface-elevated: #28262c; /* Modales o elementos flotantes */
   --bg-section-alt: #060606; /* Secciones secundarias o laterales */
   --bg-alternative: #333;
+  --blur-bg: rgba(12, 18, 20, 0.3); /* Fondo para modales con efecto blur */
+  --auth-bg-gradient: linear-gradient(
+    135deg,
+    #1c1418 0%,
+    #3b2518 25%,
+    #261a24 50%,
+    #4d3222 75%,
+    #1c1418 100%
+  );
 
   /* --- TEXTO --- */
   --text-primary: #ece4da; /* Títulos y cuerpo principal */
@@ -16,7 +25,12 @@
   /* --- ACENTOS Y MARCA --- */
   --brand-primary: #d3ab80; /* Color principal de la marca (botones, links) */
   --brand-primary-rgb: 211, 171, 128;
-  --brand-soft: rgba(211, 171, 128, 0.35); /* Fondo sutil para elementos activos */
+  --brand-soft: rgba(
+    211,
+    171,
+    128,
+    0.35
+  ); /* Fondo sutil para elementos activos */
   --border-color: rgba(211, 171, 128, 0.24);
 
   /* --- NAVEGACIÓN (Sidebar/Header) --- */
@@ -40,7 +54,7 @@
 
   /* --- EFECTOS --- */
   --shadow-main: 0 8px 30px rgba(0, 0, 0, 0.4);
-  --shadow-secondary: 0 2px 10px rgba(var(--brand-primary-rgb), .4);
+  --shadow-secondary: 0 2px 10px rgba(var(--brand-primary-rgb), 0.4);
   --transition-standard: all 0.3s ease;
   --radius-main: 15px;
   --radius-secondary: 7px;

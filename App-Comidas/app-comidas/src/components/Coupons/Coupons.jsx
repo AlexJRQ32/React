@@ -1,50 +1,60 @@
 import { ButtonAction } from '../Button/Button'
 import './Coupons.css'
 
-export function CouponCard({ name, discount }) {
+export function CouponCard({ coupons }) {
   return (
-    <div className="coupon-card">
-      <span>
-        <i className="fa-solid fa-tag"></i>
-        {name}
-      </span>
-      {/\d/.test(discount) ? <p>{discount}% OFF</p> : <p>{discount}</p>}
-    </div>
+    <ul className="coupons">
+      {coupons.map((coupon) => (
+        <li key={coupon.id}>
+          <div className="coupon-card">
+            <span>
+              <i className="fa-solid fa-tag"></i>
+              {coupon.name}
+            </span>
+            {/\d/.test(coupon.discount) ? (
+              <p>{coupon.discount}% OFF</p>
+            ) : (
+              <p>{coupon.discount}</p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }
 
-export function CouponTicket({
-  discount,
-  short_description,
-  description,
-  quantity,
-  classN
-}) {
-  const classNameAcepted = "coupon-buttons"
+export function CouponTicket({ coupons, className, onclick }) {
+  const classNameAcepted = 'coupon-buttons'
   return (
-    <div className="coupon-ticket">
-      <div class="pin-seguro"></div>
-      <div className="coupon-header">
-        <p>RappiDoz Ticket</p>
-        {/\d/.test(discount) ? <h1>{discount}%</h1> : <h1>{discount}</h1>}
-        <span>OFF</span>
-      </div>
-      <div className="coupon-body">
-        <span>
-          <strong>{short_description}</strong>
-          <p>{description}</p>
-        </span>
-        {classN === classNameAcepted ?
-          <div className={classN}>
-            <ButtonAction icon={'pencil'} classN={'edit'} />
-            <ButtonAction icon={'trash'} classN={'delete'} />
-          </div>
-          :
-          <div className={classN}></div>
-        }
+    <ul className="grid-body">
+      {coupons.map(coupon => (
+        <li key={coupon.id}>
+          <div className="coupon-ticket">
+            <div class="pin-seguro"></div>
+            <div className="coupon-header">
+              <p>RappiDoz Ticket</p>
+              {/\d/.test(coupon.discount) ? <h1>{coupon.discount}%</h1> : <h1>{coupon.discount}</h1>}
+              <span>OFF</span>
+            </div>
+            <div className="coupon-body">
+              <span>
+                <strong>{coupon.short_description}</strong>
+                <p>{coupon.description}</p>
+              </span>
+              {className === classNameAcepted ? (
+                <div className={className}>
+                  <ButtonAction icon={'pencil'} className={'edit'} onclick={onclick} />
+                  <ButtonAction icon={'trash'} className={'delete'} onclick={onclick} />
+                </div>
+              ) : (
+                <div className={className}></div>
+              )}
 
-        <p>{quantity} remaining</p>
-      </div>
-    </div>
+              <p>{coupon.quantity} remaining</p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }

@@ -47,12 +47,6 @@
   font-weight: 900;
 }
 
-.categories{
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-
 .header-restaurants{
   display: flex;
   width: 100%;
@@ -67,16 +61,6 @@
   color: var(--text-main);
   transform: translateY(-8px);
   transition: var(--transition-standard);
-}
-
-.restaurants{
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 12px 4px;
-  white-space: nowrap;
 }
 
 .pasos{

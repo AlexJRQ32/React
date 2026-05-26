@@ -4,6 +4,8 @@
   align-items: center;
   width: 70%;
   margin-bottom: 40px;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .header-search{
@@ -50,11 +52,4 @@
 .header-show span{
   font-weight: 400;
   color: var(--text-secondary);
-}
-
-.show-restaurants{
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
 }

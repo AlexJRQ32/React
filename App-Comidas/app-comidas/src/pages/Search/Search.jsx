@@ -1,11 +1,12 @@
 import './Search.css'
 import { SearchBar } from '../../components/SearchBar/SearchBar'
-import { LargeCard } from '../../components/Cards/Cards'
-import Restaurants from '../../mocks/restaurants.json'
+import { RestaurantLargeCard } from '../../components/Cards/Cards'
+import { CategoryCard } from '../../components/Cards/Cards'
+import { useMappedObjects } from '../../hooks/useMappedObjects'
 
 export function Search() {
-  const restaurantsLength = Restaurants.length
-  const restaurants = Restaurants
+  const { restaurants, categories } = useMappedObjects()
+  const restaurantsLength = restaurants.length
 
   return (
     <div className="page" style={{ backgroundColor: '#1e1c22' }}>
@@ -15,11 +16,12 @@ export function Search() {
           <p>Search by name, food, area or category</p>
           <SearchBar
             icon={'search'}
-            style={{
-              border: '2px solid #d3ab80',
-              borderRadius: '15px'
-            }}
+            className={'in-search'}
           />
+        </div>
+        <div className="browse-categories">
+          <h2>Browse by category</h2>
+          <CategoryCard categories={categories} />
         </div>
       </section>
       <section className="show-section">
@@ -27,19 +29,7 @@ export function Search() {
           <strong>Restaurants</strong>
           <span>{restaurantsLength} locals</span>
         </div>
-        <div className="show-restaurants">
-          {restaurants.map((restaurant) => (
-            <LargeCard
-              name={restaurant.name}
-              img={restaurant.img}
-              schedule={restaurant.schedule}
-              location={restaurant.location}
-              isOpen={restaurant.isOpen}
-              deliveryFee={restaurant.deliveryFee}
-              deliveryTime={restaurant.deliveryTime}
-            />
-          ))}
-        </div>
+        <RestaurantLargeCard restaurants={restaurants} />
       </section>
     </div>
   )

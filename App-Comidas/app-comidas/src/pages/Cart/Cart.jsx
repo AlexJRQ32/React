@@ -2,15 +2,12 @@ import './Cart.css'
 import { NavLink } from 'react-router-dom'
 import { Select } from '../../components/Select/Select'
 import { ButtonAction, ButtonRedirect } from '../../components/Button/Button'
-import Ubications from '../../mocks/ubications.json'
-import PaymentMethods from '../../mocks/payment-methods.json'
-import Coupons from '../../mocks/coupons.json'
+import { useMappedObjects } from '../../hooks/useMappedObjects'
 import { CouponCard } from '../../components/Coupons/Coupons'
 
 export function Cart() {
-  const ubications = Ubications
-  const paymentMethods = PaymentMethods
-  const coupons = Coupons
+  const { ubications, paymentMethods, coupons } = useMappedObjects()
+
 
   return (
     <div className="page">
@@ -35,7 +32,7 @@ export function Cart() {
               </span>
               <div className="form">
                 <Select name={'ubications'} parameters={ubications} title={'location'}/>
-                <ButtonAction icon={'x'} classN={'delete'}/>
+                <ButtonAction icon={'xmark'} className={'delete'}/>
               </div>
               <div className="link-add">
                 <NavLink to="/search">
@@ -62,9 +59,9 @@ export function Cart() {
               </span>
               <div className="container">
                 {
-                  coupons.length === 0 ? ( <p>No benefits available.</p> ) : ( coupons.map(coupon => (
-                    <CouponCard name={coupon.name} discount={coupon.discount} />
-                  )))
+                  coupons.length === 0 ? ( <p>No benefits available.</p> ) : ( 
+                    <CouponCard coupons={coupons} />
+                  )
                 }
               </div>
             </div>
@@ -85,7 +82,7 @@ export function Cart() {
                 <h2>TOTAL</h2>
                 <h2>0$</h2>
               </div>
-              <ButtonRedirect title={'CONFIRM ORDER'} style={{width: '100%', borderRadius: '7px'}} />
+              <ButtonRedirect title={'CONFIRM ORDER'} className={'confirm'} site={'voucher'} />
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "McDonald's",
     "img": "https://pngimg.com/uploads/mcdonalds/mcdonalds_PNG17.png",
     "schedule": "06:00 - 00:00",
@@ -10,6 +11,7 @@
     "deliveryTime": "30 min"
   },
   {
+    "id": 2,
     "name": "Pizza Hut",
     "img": "https://logos-marcas.com/wp-content/uploads/2021/10/Pizza-Hut-Emblema.png",
     "schedule": "11:00 - 23:00",
@@ -20,6 +22,7 @@
     "deliveryTime": "35 min"
   },
   {
+    "id": 3,
     "name": "Taco Bell",
     "img": "https://logos-world.net/wp-content/uploads/2021/10/Taco-Bell-Emblem.png",
     "schedule": "10:00 - 22:00",
@@ -30,6 +33,7 @@
     "deliveryTime": "25 min"
   },
   {
+    "id": 4,
     "name": "KFC",
     "img": "https://static.vecteezy.com/system/resources/previews/024/693/620/original/kfc-logo-transparent-free-png.png",
     "schedule": "11:00 - 22:00",
@@ -40,6 +44,7 @@
     "deliveryTime": "30 min"
   },
   {
+    "id": 5,
     "name": "Burger King",
     "img": "https://logos-world.net/wp-content/uploads/2020/04/Burger-King-Logo-1994-1999.png",
     "schedule": "07:00 - 23:00",
@@ -50,6 +55,7 @@
     "deliveryTime": "30 min"
   },
   {
+    "id": 6,
     "name": "Ready Pizza",
     "img": "https://readypizzapa.com/og.jpg",
     "schedule": "11:00 - 22:00",

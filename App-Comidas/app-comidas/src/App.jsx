@@ -13,6 +13,11 @@ import { MyMenuDashboard } from './pages/AdminDashboard/Dashboard Pages/MyMenu'
 import { RestaurantsDashboard } from './pages/AdminDashboard/Dashboard Pages/Restaurants'
 import { UsersDashboard } from './pages/AdminDashboard/Dashboard Pages/Users'
 import { CouponsDashboard } from './pages/AdminDashboard/Dashboard Pages/CouponsDashboard'
+import { Voucher } from './pages/Voucher/Voucher'
+import { AuthLayout } from './pages/Auth/AuthLayout'
+import { SignIn } from './pages/Auth/SignIn'
+import { SignUp } from './pages/Auth/SignUp'
+import { ChooseRole } from './pages/Auth/ChooseRole'
 
 function App() {
   return (
@@ -26,6 +31,7 @@ function App() {
           <Route path="/incoming-orders" element={<IncomingOrders />} />
           <Route path="/order-history" element={<OrderHistory />} />
           <Route path="/coupons" element={<Coupons />} />
+          <Route path='/voucher' element={<Voucher />}/>
         </Route>
 
         <Route path="/dashboard" element={<AdminDashboard />}>
@@ -35,6 +41,12 @@ function App() {
           <Route path="restaurants" element={<RestaurantsDashboard />} />
           <Route path="users" element={<UsersDashboard />} />
           <Route path="coupons-dashboard" element={<CouponsDashboard />} />
+        </Route>
+
+        <Route path="/auth" element={<AuthLayout />}>
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path='choose-role' element={<ChooseRole />}/>
         </Route>
       </Routes>
     </div>

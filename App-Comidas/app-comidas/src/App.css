@@ -9,5 +9,5 @@ main{
   background-color: var(--bg-main);
   height: auto;
   margin-top: 80px;
-  padding-top: 20px;
+  padding: 40px 0;
 }

@@ -1,21 +1,37 @@
 import { ButtonAction } from '../../../components/Button/Button'
 import { CrudCard } from '../../../components/Cards/Cards'
-import Users from '../../../mocks/users.json'
+import { useMappedObjects } from '../../../hooks/useMappedObjects'
+import { FormUser } from '../../../components/ModalContent/ModalContent'
+import { Modal } from '../../../components/Modal/Modal'
+import { useModal } from '../../../hooks/useModal'
 
-export function UsersDashboard(){
-  return(
+export function UsersDashboard() {
+  const { users } = useMappedObjects()
+  const { isClose, openModal, isOpen } = useModal()
+
+  return (
     <div className="content-section">
+      <Modal
+        isOpen={openModal}
+        onClose={isClose}
+        subtitle={`"Manage your users"`}
+        title={'Update User'}
+        children={users}
+        form={<FormUser children={users} onClose={isClose} />}
+      />
       <div className="content-header">
         <h1>Users</h1>
-        <ButtonAction icon={'plus'} classN={'add'} />
+        <ButtonAction icon={'plus'} className={'add'} onclick={isOpen} />
       </div>
       <div className="content-main">
-        {Users.map((user) => (
+        {users.map((user) => (
           <CrudCard
+            key={user.id}
             img={user.img}
             attribute={user.value}
             icon={'briefcase'}
             name={user.title}
+            onclick={isOpen}
           />
         ))}
       </div>

@@ -1,16 +1,15 @@
 import './Button.css'
 import { useNavigate } from 'react-router-dom'
 
-export function ButtonRedirect({ classN, icon, title, type, site, style }) {
+export function ButtonRedirect({ className, icon, title, type, site }) {
   const navigate = useNavigate()
 
   const handleClick = () => navigate(`/${site}`)
   return (
     <button
-      className={`btn-redirect btn-${classN}`}
+      className={`btn-redirect btn-${className}`}
       onClick={handleClick}
       type={type}
-      style={style}
     >
       <i className={`fa-solid fa-${icon}`}></i>
       {title}
@@ -18,15 +17,26 @@ export function ButtonRedirect({ classN, icon, title, type, site, style }) {
   )
 }
 
-export function ButtonAction({ classN, icon, type, onclick, style }) {
+export function ButtonAction({ className, icon, type, onclick}) {
   return (
     <button
-      className={`btn-action btn-${classN}`}
+      className={`btn-action btn-${className}`}
       onClick={onclick}
       type={type}
-      style={style}
     >
       <i className={`fa-solid fa-${icon}`}></i>
+    </button>
+  )
+}
+
+export function ButtonActionLarge({ title, type, onclick }) {
+  return (
+    <button
+      className='btn-action-large'
+      onClick={onclick}
+      type={type}
+    >
+      {title}
     </button>
   )
 }
