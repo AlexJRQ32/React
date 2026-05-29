@@ -18,6 +18,10 @@
   border: 1px solid var(--border-color);
 }
 
+.categorie-card h3{
+  margin: 0;
+}
+
 .categorie-card i {
   color: var(--brand-primary);
   font-size: 32px;

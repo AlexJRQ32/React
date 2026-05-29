@@ -1,43 +1,39 @@
 [
   {
     "id": 1,
-    "title": "Carlos Mendoza",
-    "value": "System Administrator",
+    "name": "Carlos Mendoza",
     "role": "Admin",
     "email": "c.mendoza@rappidoz.com",
     "img": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=250&auto=format&fit=crop",
-    "last_session": "Active now",
-    "password": "secure123"
+    "password": "secure123",
+    "phone" : "12345678"
   },
   {
     "id": 2,
-    "title": "Ana Rodríguez",
-    "value": "Menu Manager",
+    "name": "Ana Rodríguez",
     "role": "Editor",
     "email": "a.rodriguez@rappidoz.com",
     "img": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=250&auto=format&fit=crop",
-    "last_session": "2 hours ago",
-    "password": "secure123"
+    "password": "secure123",
+    "phone" : "12345678"
   },
   {
     "id": 3,
-    "title": "Laura Chaves",
-    "value": "Marketing Specialist",
+    "name": "Laura Chaves",
     "role": "Editor",
     "email": "l.chaves@rappidoz.com",
     "img": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=250&auto=format&fit=crop",
-    "last_session": "Yesterday",
-    "password": "secure123"
+    "password": "secure123",
+    "phone" : "12345678"
 
   },
   {
     "id": 4,
-    "title": "Sebastian Rojas",
-    "value": "Technical Support",
+    "name": "Sebastian Rojas",
     "role": "Viewer",
     "email": "s.rojas@rappidoz.com",
     "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=250&auto=format&fit=crop",
-    "last_session": "Active now",
-    "password": "secure123"
+    "password": "secure123",
+    "phone" : "12345678"
   }
 ]

@@ -13,12 +13,11 @@ export function useMappedObjects() {
   const mappedUsers = Users.map((user) => ({
     id: user.id,
     email: user.email,
-    title: user.title,
+    name: user.name,
     role: user.role,
-    value: user.value,
     img: user.img,
-    last_session: user.last_session,
     password: user.password,
+    phone: user.phone
   }))
 
   const mappedCategories = Categories.map((element) => ({
@@ -32,18 +31,22 @@ export function useMappedObjects() {
     id: dishe.id,
     img: dishe.img,
     category: dishe.category,
-    available: dishe.available,
+    description: dishe.description,
     price: dishe.price,
     name: dishe.name,
   }))
 
   const mappedCoupons = Coupons.map((coupon) => ({
-    id: coupon.id,
-    name: coupon.name,
-    discount: coupon.discount,
-    description: coupon.description,
-    short_description: coupon.short_description,
-    quantity: coupon.quantity,
+    id: coupon.Id,
+    code: coupon.Code,
+    title: coupon.Title,
+    description: coupon.Description,
+    discount: coupon.Discount,
+    isPercentage: coupon.IsPercentage,
+    expirationDate: coupon.ExpirationDate,
+    active: coupon.Active,
+    stock: coupon.Stock,
+    categoryId: coupon.CategoryId,
   }))
 
   const mappedOrders = Orders.map((order) => ({
@@ -66,16 +69,18 @@ export function useMappedObjects() {
     description: method.descripcion,
   }))
 
-  const mappedRestaurants = Restaurants.map((element) => ({
-    id: element.id,
-    name: element.name,
-    img: element.img,
-    rating: element.rating,
-    schedule: element.schedule,
-    location: element.location,
-    isOpen: element.isOpen,
-    deliveryFee: element.deliveryFee,
-    deliveryTime: element.deliveryTime,
+  const mappedRestaurants = Restaurants.map((restaurant) => ({
+    id: restaurant.Id,
+    tradeName: restaurant.TradeName,
+    address: restaurant.Address,
+    categoryId: restaurant.CategoryId,
+    openingTime: restaurant.OpeningTime,
+    closingTime: restaurant.ClosingTime,
+    img: restaurant.Img,
+    rating: restaurant.Rating,
+    isOpen: restaurant.IsOpen,
+    deliveryFee: restaurant.DeliveryFee,
+    deliveryTime: restaurant.DeliveryTime,
   }))
 
   const mappedStatCards = StatCards.map((statCard) => ({

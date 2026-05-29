@@ -1,52 +1,65 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using APIRest_App_Comidas.Models;
+using Microsoft.EntityFrameworkCore;
 using RappiDozApp.Models;
+using System.Data;
+using System.Net;
 using System.Reflection.Emit;
 
 namespace APIRest_App_Comidas.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-           : base(options)
-        {
-        }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Rol> Roles { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
-        public DbSet<Restaurante> Restaurantes { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Producto> Productos { get; set; }
-        public DbSet<Cupon> Cupones { get; set; }
-        public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<DetallePedido> DetallePedidos { get; set; }
-        public DbSet<Valoracion> Valoraciones { get; set; }
-        public DbSet<CuponApartado> CuponesApartados { get; set; }
-        public DbSet<UbicacionUsuario> UbicacionUsuario { get; set; }
-        public DbSet<MetodoPago> MetodosPago { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Address> Addresses { get; set; } // Nombre actualizado de Ubications
+        public DbSet<User> Users { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<ReservedCoupon> ReservedCoupons { get; set; }
 
-        #region Configuración
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            // Configurar relaciones con llaves foráneas estrictas
+            modelBuilder.Entity<Restaurant>()
+                .HasOne(r => r.Category).WithMany().HasForeignKey(r => r.CategoryId);
+            modelBuilder.Entity<Restaurant>()
+                .HasOne(r => r.User).WithMany().HasForeignKey(r => r.UserId);
 
-            modelBuilder.Entity<Producto>().Property(p => p.Precio).HasPrecision(18, 2);
-            modelBuilder.Entity<Cupon>().Property(c => c.Descuento).HasPrecision(18, 2);
-            modelBuilder.Entity<Pedido>().Property(p => p.Total).HasPrecision(18, 2);
-            modelBuilder.Entity<DetallePedido>().Property(d => d.PrecioHistorico).HasPrecision(18, 2);
+            modelBuilder.Entity<Dish>()
+                .HasOne(d => d.Category).WithMany().HasForeignKey(d => d.CategoryId);
 
-            modelBuilder.Entity<UbicacionUsuario>().Property(u => u.Latitud).HasPrecision(18, 10);
-            modelBuilder.Entity<UbicacionUsuario>().Property(u => u.Longitud).HasPrecision(18, 10);
-            modelBuilder.Entity<Pedido>().Property(p => p.EntregaLatitud).HasPrecision(18, 10);
-            modelBuilder.Entity<Pedido>().Property(p => p.EntregaLongitud).HasPrecision(18, 10);
-            modelBuilder.Entity<Restaurante>().Property(r => r.Latitud).HasPrecision(18, 10);
-            modelBuilder.Entity<Restaurante>().Property(r => r.Longitud).HasPrecision(18, 10);
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Category).WithMany().HasForeignKey(o => o.CategoryId);
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Customer).WithMany().HasForeignKey(o => o.CustomerId);
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.PaymentMethod).WithMany().HasForeignKey(o => o.PaymentMethodId);
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Address).WithMany().HasForeignKey(o => o.AddressId);
 
-            modelBuilder.Entity<Pedido>()
-                .HasOne(p => p.MetodoPago)
-                .WithMany(m => m.Pedidos)
-                .HasForeignKey(p => p.MetodoPagoId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Coupon>()
+                .HasOne(c => c.Category).WithMany().HasForeignKey(c => c.CategoryId);
+            modelBuilder.Entity<Coupon>()
+                .HasOne(c => c.Order).WithMany().HasForeignKey(c => c.OrderId);
+            modelBuilder.Entity<Coupon>()
+                .HasOne(c => c.User).WithMany().HasForeignKey(c => c.UserId); // Relación para apartados por usuario
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order).WithMany(o => o.Items).HasForeignKey(oi => oi.OrderId);
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Dish).WithMany().HasForeignKey(oi => oi.DishId);
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Role).WithMany().HasForeignKey(u => u.RoleId);
+
+            modelBuilder.Entity<Address>()
+                .HasOne(a => a.User).WithMany().HasForeignKey(a => a.UserId);
         }
-        #endregion
     }
 }

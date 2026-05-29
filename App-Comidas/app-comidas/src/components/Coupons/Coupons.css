@@ -129,6 +129,7 @@
   background-color: var(--bg-surface);
   color: var(--text-secondary);
   padding: 2px 8px;
+  margin-bottom: 10px;
 }
 
 .pin-seguro {

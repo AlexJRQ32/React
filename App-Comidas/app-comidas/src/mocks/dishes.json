@@ -5,7 +5,7 @@
     "category": "Main Course",
     "price": "$15.99",
     "img": "https://media.scoolinary.app/blog/images/2023/05/hamburguesa-la-trufada-1.jpg",
-    "available": true
+    "description": "Hamburguesa gourmet con carne premium y un toque elegante de mayonesa de trufa."
   },
   {
     "id": 102,
@@ -13,7 +13,7 @@
     "category": "Sides",
     "price": "$6.50",
     "img": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?q=80&w=500&auto=format&fit=crop",
-    "available": true
+    "description": "Papas rústicas cortadas a mano, crujientes por fuera y sazonadas con hierbas."
   },
   {
     "id": 103,
@@ -21,7 +21,7 @@
     "category": "Drinks",
     "price": "$7.25",
     "img": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=500&auto=format&fit=crop",
-    "available": false
+    "description": "Batido cremoso de leche con un intenso y dulce sabor a avellanas tostadas."
   },
   {
     "id": 104,
@@ -29,6 +29,6 @@
     "category": "Appetizers",
     "price": "$12.00",
     "img": "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?q=80&w=500&auto=format&fit=crop",
-    "available": true
+    "description": "Alitas de pollo jugosas, bañadas en una salsa barbacoa ahumada y dulce."
   }
 ]

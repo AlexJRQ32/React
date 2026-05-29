@@ -18,6 +18,7 @@ import { AuthLayout } from './pages/Auth/AuthLayout'
 import { SignIn } from './pages/Auth/SignIn'
 import { SignUp } from './pages/Auth/SignUp'
 import { ChooseRole } from './pages/Auth/ChooseRole'
+import { RegisterBusiness } from './pages/Auth/RegisterBusiness'
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="sign-in" element={<SignIn />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path='choose-role' element={<ChooseRole />}/>
+          <Route path='register-business' element={<RegisterBusiness />}/>
         </Route>
       </Routes>
     </div>

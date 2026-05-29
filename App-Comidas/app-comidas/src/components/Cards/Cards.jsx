@@ -42,12 +42,12 @@ export function RestaurantCard({ restaurants }) {
       {restaurants.map(restaurant => (
         <li key={restaurant.id}>
           <NavLink to="/search" className="restaurant-card">
-            <img src={restaurant.img} alt={restaurant.name} />
-            <h3>{restaurant.name}</h3>
+            <img src={restaurant.img} alt={restaurant.tradeName} />
+            <h3>{restaurant.tradeName}</h3>
             <div className="other-info">
               <span>
                 <i className="fa-solid fa-clock" />
-                {restaurant.schedule}
+                {restaurant.openingTime} - {restaurant.closingTime}
               </span>
               <span>
                 <i className="fa-solid fa-star" />
@@ -67,14 +67,14 @@ export function RestaurantLargeCard({ restaurants }) {
       {restaurants.map(restaurant => (
         <li key={restaurant.id}>
           <div className="large-card">
-            <img src={restaurant.img} alt={restaurant.name} />
+            <img src={restaurant.img} alt={restaurant.tradeName} />
             <div className="card-info">
               <div className="content">
                 <div id="top">
-                  <h3>{restaurant.name}</h3>
+                  <h3>{restaurant.tradeName}</h3>
                   <span>
                     <i className="fa-solid fa-location-dot" />
-                    {restaurant.location}
+                    {restaurant.address}
                   </span>
                 </div>
                 {restaurant.isOpen ? (
@@ -87,7 +87,7 @@ export function RestaurantLargeCard({ restaurants }) {
                 <div id="bot">
                   <span>
                     <i className="fa-regular fa-clock"></i>
-                    {restaurant.schedule}
+                    {restaurant.openingTime} - {restaurant.closingTime}
                   </span>
                   <p>
                     {restaurant.deliveryFee} delivery • {restaurant.deliveryTime}

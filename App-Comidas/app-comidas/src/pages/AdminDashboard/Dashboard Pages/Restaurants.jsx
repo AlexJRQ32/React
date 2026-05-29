@@ -28,9 +28,9 @@ export function RestaurantsDashboard(){
               <CrudCard
                 key={restaurant.id}
                 img={restaurant.img}
-                attribute={restaurant.location}
+                attribute={restaurant.address}
                 icon={'location-dot'}
-                name={restaurant.name}
+                name={restaurant.tradeName}
                 onclick={isOpen}
               />
             ))}

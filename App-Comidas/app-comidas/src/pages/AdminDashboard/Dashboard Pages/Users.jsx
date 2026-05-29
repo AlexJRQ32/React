@@ -28,9 +28,9 @@ export function UsersDashboard() {
           <CrudCard
             key={user.id}
             img={user.img}
-            attribute={user.value}
+            attribute={user.role}
             icon={'briefcase'}
-            name={user.title}
+            name={user.name}
             onclick={isOpen}
           />
         ))}

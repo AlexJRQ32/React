@@ -33,12 +33,12 @@ export function CouponTicket({ coupons, className, onclick }) {
             <div class="pin-seguro"></div>
             <div className="coupon-header">
               <p>RappiDoz Ticket</p>
-              {/\d/.test(coupon.discount) ? <h1>{coupon.discount}%</h1> : <h1>{coupon.discount}</h1>}
+              {coupon.isPercentage ? <h1>{coupon.discount}%</h1> : <h1>{coupon.discount}</h1>}
               <span>OFF</span>
             </div>
             <div className="coupon-body">
               <span>
-                <strong>{coupon.short_description}</strong>
+                <strong>{coupon.code}</strong>
                 <p>{coupon.description}</p>
               </span>
               {className === classNameAcepted ? (
@@ -50,7 +50,7 @@ export function CouponTicket({ coupons, className, onclick }) {
                 <div className={className}></div>
               )}
 
-              <p>{coupon.quantity} remaining</p>
+              <p>{coupon.stock} remaining</p>
             </div>
           </div>
         </li>
