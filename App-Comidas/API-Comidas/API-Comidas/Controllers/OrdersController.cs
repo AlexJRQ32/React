@@ -19,8 +19,8 @@ namespace API_Comidas.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        [HttpGet("list")]
+        public async Task<ActionResult<IEnumerable<Order>>> List()
         {
             try
             {

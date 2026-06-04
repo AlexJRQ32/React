@@ -19,8 +19,8 @@ namespace API_Comidas.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants()
+        [HttpGet("list")]
+        public async Task<ActionResult<IEnumerable<Restaurant>>> List()
         {
             try
             {
@@ -41,8 +41,8 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
+        [HttpGet("getbyid/{id}")]
+        public async Task<ActionResult<Restaurant>> GetById(int id)
         {
             try
             {
@@ -67,48 +67,63 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Restaurant>> CreateRestaurant([FromBody] Restaurant restaurant)
+        [HttpPost("create")]
+        public async Task<ActionResult<Restaurant>> Create([FromBody] CreateRestaurantDto dto)
         {
             try
             {
-                if (restaurant == null)
+                if (dto == null)
                 {
-                    return BadRequest(new { message = "Restaurant cannot be null" });
+                    return BadRequest(new { message = "Restaurant data cannot be null" });
                 }
 
-                if (string.IsNullOrWhiteSpace(restaurant.TradeName))
+                if (string.IsNullOrWhiteSpace(dto.TradeName))
                 {
                     return BadRequest(new { message = "TradeName is required" });
                 }
 
-                if (restaurant.CategoryId <= 0)
+                if (dto.CategoryId <= 0)
                 {
                     return BadRequest(new { message = "CategoryId must be valid" });
                 }
 
-                if (restaurant.UserId <= 0)
+                if (dto.UserId <= 0)
                 {
                     return BadRequest(new { message = "UserId must be valid" });
                 }
 
-                var categoryExists = await _context.Categories.AnyAsync(c => c.Id == restaurant.CategoryId);
+                var categoryExists = await _context.Categories.AnyAsync(c => c.Id == dto.CategoryId);
                 if (!categoryExists)
                 {
-                    return BadRequest(new { message = $"Category with ID {restaurant.CategoryId} does not exist" });
+                    return BadRequest(new { message = $"Category with ID {dto.CategoryId} does not exist" });
                 }
 
-                var userExists = await _context.Users.AnyAsync(u => u.Id == restaurant.UserId);
+                var userExists = await _context.Users.AnyAsync(u => u.Id == dto.UserId);
                 if (!userExists)
                 {
-                    return BadRequest(new { message = $"User with ID {restaurant.UserId} does not exist" });
+                    return BadRequest(new { message = $"User with ID {dto.UserId} does not exist" });
                 }
+
+                var restaurant = new Restaurant
+                {
+                    TradeName = dto.TradeName,
+                    CategoryId = dto.CategoryId,
+                    UserId = dto.UserId,
+                    Address = dto.Address ?? string.Empty,
+                    OpeningTime = dto.OpeningTime ?? "08:00",
+                    ClosingTime = dto.ClosingTime ?? "22:00",
+                    Img = string.Empty,
+                    Rating = "5.0",
+                    IsOpen = true,
+                    DeliveryFee = 0m,
+                    DeliveryTime = "30-45 min"
+                };
 
                 _context.Restaurants.Add(restaurant);
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation($"Restaurant created: {restaurant.Id}");
-                return CreatedAtAction(nameof(GetRestaurant), new { id = restaurant.Id }, restaurant);
+                return CreatedAtAction(nameof(GetById), new { id = restaurant.Id }, restaurant);
             }
             catch (DbUpdateException ex)
             {
@@ -122,21 +137,53 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateRestaurant(int id, [FromBody] Restaurant restaurant)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateRestaurantDto dto)
         {
             try
             {
-                if (id != restaurant.Id)
+                if (dto == null)
                 {
-                    return BadRequest(new { message = "ID mismatch" });
+                    return BadRequest(new { message = "Restaurant data cannot be null" });
                 }
+
+                var restaurant = await _context.Restaurants.FindAsync(id);
+                if (restaurant == null)
+                {
+                    return NotFound(new { message = $"Restaurant with ID {id} not found" });
+                }
+
+                if (!string.IsNullOrWhiteSpace(dto.TradeName))
+                    restaurant.TradeName = dto.TradeName;
+
+                if (!string.IsNullOrWhiteSpace(dto.Address))
+                    restaurant.Address = dto.Address;
+
+                if (dto.CategoryId > 0)
+                {
+                    var categoryExists = await _context.Categories.AnyAsync(c => c.Id == dto.CategoryId);
+                    if (!categoryExists)
+                        return BadRequest(new { message = $"Category with ID {dto.CategoryId} does not exist" });
+                    restaurant.CategoryId = dto.CategoryId;
+                }
+
+                if (!string.IsNullOrWhiteSpace(dto.OpeningTime))
+                    restaurant.OpeningTime = dto.OpeningTime;
+
+                if (!string.IsNullOrWhiteSpace(dto.ClosingTime))
+                    restaurant.ClosingTime = dto.ClosingTime;
+
+                if (!string.IsNullOrWhiteSpace(dto.Img))
+                    restaurant.Img = dto.Img;
+
+                if (dto.IsOpen.HasValue)
+                    restaurant.IsOpen = dto.IsOpen.Value;
 
                 _context.Entry(restaurant).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation($"Restaurant updated: {id}");
-                return NoContent();
+                return Ok(new { message = "Restaurant updated successfully", restaurant });
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -150,8 +197,8 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRestaurant(int id)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
@@ -165,7 +212,7 @@ namespace API_Comidas.Controllers
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation($"Restaurant deleted: {id}");
-                return NoContent();
+                return Ok(new { message = "Restaurant deleted successfully" });
             }
             catch (Exception ex)
             {

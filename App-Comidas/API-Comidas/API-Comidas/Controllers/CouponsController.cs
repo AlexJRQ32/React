@@ -13,14 +13,14 @@ namespace API_Comidas.Controllers
         private readonly AppDbContext _context;
         private readonly ILogger<CouponsController> _logger;
 
-        public CouponsController(AppDbContext context, ILogger<CouponsController> logger)
+        public CouponsController(AppDbContext context, ILogger<CouponsController> _logger)
         {
             _context = context;
-            _logger = logger;
+            this._logger = _logger;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Coupon>>> GetCoupons()
+        [HttpGet("list")]
+        public async Task<ActionResult<IEnumerable<Coupon>>> List()
         {
             try
             {
@@ -39,8 +39,8 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Coupon>> GetCoupon(int id)
+        [HttpGet("getbyid/{id}")]
+        public async Task<ActionResult<Coupon>> GetById(int id)
         {
             try
             {
@@ -50,9 +50,7 @@ namespace API_Comidas.Controllers
                     .FirstOrDefaultAsync(c => c.Id == id);
 
                 if (coupon == null)
-                {
                     return NotFound(new { message = $"Coupon with ID {id} not found" });
-                }
 
                 return Ok(coupon);
             }
@@ -63,36 +61,29 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Coupon>> CreateCoupon([FromBody] Coupon coupon)
+        [HttpPost("create")]
+        public async Task<ActionResult<Coupon>> Create([FromBody] Coupon coupon)
         {
             try
             {
                 if (coupon == null)
-                {
                     return BadRequest(new { message = "Coupon cannot be null" });
-                }
 
                 if (string.IsNullOrWhiteSpace(coupon.Code))
-                {
                     return BadRequest(new { message = "Code is required" });
-                }
 
-                if (coupon.Discount <= 0)
-                {
-                    return BadRequest(new { message = "Discount must be greater than 0" });
-                }
+                if (coupon.RestaurantId <= 0)
+                    return BadRequest(new { message = "RestaurantId must be valid" });
+
+                var restaurantExists = await _context.Restaurants.AnyAsync(r => r.Id == coupon.RestaurantId);
+                if (!restaurantExists)
+                    return BadRequest(new { message = $"Restaurant with ID {coupon.RestaurantId} does not exist" });
 
                 _context.Coupons.Add(coupon);
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation($"Coupon created: {coupon.Id}");
-                return CreatedAtAction(nameof(GetCoupon), new { id = coupon.Id }, coupon);
-            }
-            catch (DbUpdateException ex)
-            {
-                _logger.LogError(ex, "Database error creating coupon");
-                return StatusCode(500, new { message = "Database error", error = ex.InnerException?.Message });
+                return CreatedAtAction(nameof(GetById), new { id = coupon.Id }, coupon);
             }
             catch (Exception ex)
             {
@@ -101,26 +92,19 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCoupon(int id, [FromBody] Coupon coupon)
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Coupon coupon)
         {
             try
             {
                 if (id != coupon.Id)
-                {
                     return BadRequest(new { message = "ID mismatch" });
-                }
 
                 _context.Entry(coupon).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation($"Coupon updated: {id}");
-                return NoContent();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                _logger.LogError(ex, $"Error updating coupon {id}");
-                return StatusCode(500, new { message = "Concurrency error", error = ex.Message });
+                return Ok(new { message = "Coupon updated successfully" });
             }
             catch (Exception ex)
             {
@@ -129,22 +113,20 @@ namespace API_Comidas.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCoupon(int id)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
                 var coupon = await _context.Coupons.FindAsync(id);
                 if (coupon == null)
-                {
                     return NotFound(new { message = $"Coupon with ID {id} not found" });
-                }
 
                 _context.Coupons.Remove(coupon);
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation($"Coupon deleted: {id}");
-                return NoContent();
+                return Ok(new { message = "Coupon deleted successfully" });
             }
             catch (Exception ex)
             {
