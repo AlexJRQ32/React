@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace API_Comidas.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class DishesController : ControllerBase
     {
         private readonly AppDbContext _context;

@@ -6,7 +6,7 @@ using API_Comidas.Models;
 
 namespace API_Comidas.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
