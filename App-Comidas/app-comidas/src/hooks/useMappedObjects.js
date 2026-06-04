@@ -1,33 +1,33 @@
-import Users from '../mocks/users.json'
-import Categories from '../mocks/categories.json'
-import Dishes from '../mocks/dishes.json'
-import Coupons from '../mocks/coupons.json'
-import Orders from '../mocks/orders.json'
-import Payments from '../mocks/payment-methods.json'
-import Restaurants from '../mocks/restaurants.json'
+import { GetUsers } from '../services/UsersEndpoints'
+import { GetCategories } from '../services/GeneralDataEndpoints'
+import { GetDishes } from '../services/DishesEndpoints'
+import { GetCoupons } from '../services/CouponsEndpoints'
+import { GetOrders } from '../services/OrdersEndpoints'
+import { GetPaymentMethods } from '../services/GeneralDataEndpoints'
+import { GetRestaurants } from '../services/RestaurantsEndpoints'
+import { GetUserAddresses } from '../services/UsersEndpoints'
+import { GetRoles } from '../services/GeneralDataEndpoints'
 import StatCards from '../mocks/statcards.json'
-import Ubications from '../mocks/ubications.json'
-import Roles from '../mocks/roles.json'
 
 export function useMappedObjects() {
-  const mappedUsers = Users.map((user) => ({
+  const mappedUsers = GetUsers().map((user) => ({
     id: user.id,
     email: user.email,
     name: user.name,
     role: user.role,
     img: user.img,
     password: user.password,
-    phone: user.phone
+    phone: user.phone,
   }))
 
-  const mappedCategories = Categories.map((element) => ({
+  const mappedCategories = GetCategories().map((element) => ({
     id: element.id,
     name: element.name,
     icon: element.icon,
     slug: element.slug,
   }))
 
-  const mappedDishes = Dishes.map((dishe) => ({
+  const mappedDishes = GetDishes().map((dishe) => ({
     id: dishe.id,
     img: dishe.img,
     category: dishe.category,
@@ -36,7 +36,7 @@ export function useMappedObjects() {
     name: dishe.name,
   }))
 
-  const mappedCoupons = Coupons.map((coupon) => ({
+  const mappedCoupons = GetCoupons().map((coupon) => ({
     id: coupon.Id,
     code: coupon.Code,
     title: coupon.Title,
@@ -49,7 +49,7 @@ export function useMappedObjects() {
     categoryId: coupon.CategoryId,
   }))
 
-  const mappedOrders = Orders.map((order) => ({
+  const mappedOrders = GetOrders().map((order) => ({
     id: order.id,
     restaurant: order.restaurant,
     status: order.status,
@@ -61,7 +61,7 @@ export function useMappedObjects() {
     total: order.total,
   }))
 
-  const mappedPaymentMethods = Payments.map((method) => ({
+  const mappedPaymentMethods = GetPaymentMethods().map((method) => ({
     id: method.id,
     icon: method.icono,
     name: method.name,
@@ -69,7 +69,7 @@ export function useMappedObjects() {
     description: method.descripcion,
   }))
 
-  const mappedRestaurants = Restaurants.map((restaurant) => ({
+  const mappedRestaurants = GetRestaurants().map((restaurant) => ({
     id: restaurant.Id,
     tradeName: restaurant.TradeName,
     address: restaurant.Address,
@@ -83,25 +83,25 @@ export function useMappedObjects() {
     deliveryTime: restaurant.DeliveryTime,
   }))
 
+  const mappedAddresses = GetUserAddresses().map((ubication) => ({
+    id: ubication.id,
+    name: ubication.name,
+  }))
+
+  const mappedRoles = GetRoles().map((role) => ({
+    id: role.id,
+    name: role.name,
+    subtitle: role.subtitle,
+    site: role.site,
+    icon: role.icon,
+  }))
+
   const mappedStatCards = StatCards.map((statCard) => ({
     id: statCard.id,
     icon: statCard.icon,
     site: statCard.site,
     title: statCard.title,
     value: statCard.value,
-  }))
-
-  const mappedUbications = Ubications.map((ubication) => ({
-    id: ubication.id,
-    name: ubication.name,
-  }))
-
-  const mappedRoles = Roles.map((role) => ({
-    id: role.id,
-    name: role.name,
-    subtitle: role.subtitle,
-    site: role.site,
-    icon: role.icon
   }))
 
   return {
@@ -113,7 +113,7 @@ export function useMappedObjects() {
     paymentMethods: mappedPaymentMethods,
     restaurants: mappedRestaurants,
     statCards: mappedStatCards,
-    ubications: mappedUbications,
+    addresses: mappedAddresses,
     roles: mappedRoles,
   }
 }

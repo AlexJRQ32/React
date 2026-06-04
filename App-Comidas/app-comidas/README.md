@@ -60,3 +60,4 @@
 #Datos Generales
 • GET https://www.apirest-comidas.somee.com/api/generaldata/categories
 • GET https://www.apirest-comidas.somee.com/api/generaldata/payment-methods
+• GET https://www.apirest-comidas.somee.com/api/generaldata/roles

@@ -6,7 +6,7 @@ import { useMappedObjects } from '../../hooks/useMappedObjects'
 import { CouponCard } from '../../components/Coupons/Coupons'
 
 export function Cart() {
-  const { ubications, paymentMethods, coupons } = useMappedObjects()
+  const { addresses, paymentMethods, coupons } = useMappedObjects()
 
 
   return (
@@ -31,7 +31,7 @@ export function Cart() {
                 DELIVERY ADDRESS
               </span>
               <div className="form">
-                <Select name={'ubications'} parameters={ubications} title={'location'}/>
+                <Select name={'addresses'} parameters={addresses} title={'location'}/>
                 <ButtonAction icon={'xmark'} className={'delete'}/>
               </div>
               <div className="link-add">
